@@ -19,16 +19,17 @@ void wall::startDXF(DL_Dxf *dxf, DL_WriterA *dw)
     dw->sectionEntities();
 }
 
-void wall::createWall(DL_Dxf *dxf, DL_WriterA *dw, float l, float h, float x, float y)
+void wall::createWall(DL_Dxf *dxf, DL_WriterA *dw, float l, float h, float x, float y,
+                      string layer, int color, int width, string lineType)
 {
     dxf->writeLine(*dw, DL_LineData(x, y, 0.0, x+l, y, 0.0),
-                   DL_Attributes("mainLayer", 256, -1, "BYLAYER"));
+                   DL_Attributes(layer, color, width, lineType));
     dxf->writeLine(*dw, DL_LineData(x+l, y, 0.0, x+l, y+h, 0.0),
-                   DL_Attributes("mainLayer", 256, -1, "BYLAYER"));
+                   DL_Attributes(layer, color, width, lineType));
     dxf->writeLine(*dw, DL_LineData(x+l, y+h, 0.0, x, y+h, 0.0),
-                   DL_Attributes("mainLayer", 256, -1, "BYLAYER"));
+                   DL_Attributes(layer, color, width, lineType));
     dxf->writeLine(*dw, DL_LineData(x, y+h, 0.0, x, y, 0.0),
-                   DL_Attributes("mainLayer", 256, -1, "BYLAYER"));
+                   DL_Attributes(layer, color, width, lineType));
 }
 
 void wall::closeDXF(DL_WriterA *dw)

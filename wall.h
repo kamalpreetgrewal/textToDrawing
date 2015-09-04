@@ -9,7 +9,8 @@ class wall
 public:
     wall();
     ~wall();
-    void createWall(DL_Dxf *, DL_WriterA *,float, float, float, float);
+    void createWall(DL_Dxf *, DL_WriterA *,float, float, float, float,
+                    string, int, int, string);
     void startDXF(DL_Dxf *, DL_WriterA *);
     void closeDXF(DL_WriterA *);
 
