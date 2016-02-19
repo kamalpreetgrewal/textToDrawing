@@ -1,21 +1,19 @@
-#include <QCoreApplication>
 #include <QFile>
 #include <QRegularExpression>
 #include <QDebug>
 #include <QTextStream>
 #include <QIODevice>
+#include <QProcess>
 
 #include "wall.h"
 
-int main(int argc, char *argv[])
+int main()
 {
-    QCoreApplication a(argc, argv);
-
     // reading the input file
     QFile ifile("in.txt");
-    QString content ;
+    QString content;
     QStringList list;
-    ifile.open(QIODevice::ReadOnly | QIODevice::Text);
+    ifile.open(QIODevice::ReadOnly);
 
     // read whole content
     while (!ifile.atEnd()) {
@@ -54,24 +52,26 @@ int main(int argc, char *argv[])
         }
     }
 
-    qDebug() << v;
-    qDebug() << s.at(4).toUtf8();
     ofile.close();
-
-    string layerName = "\"" + s.at(4).toUtf8().constData() + "\"";
-    std::cout << layerName;
 
     // creating the wall class' object and calling its function
     wall w;
+    QString str = "wall";
+    int num_walls;
+    num_walls = content.count(str);
+
     DL_Dxf *abc = w.return_dxf();
     DL_WriterA *def = w.return_dw();
     w.startDXF(abc, def);
-//    w.createWall(abc, def, v.at(0).toFloat(), v.at(1).toFloat(),
-//                v.at(2).toFloat(), v.at(3).toFloat(), s.at(4).toUtf8().constData(),
-//                 256, 5, s.at(5).toUtf8().constData());
-//    w.createWall(abc, def, v.at(5).toFloat(),v.at(6).toFloat(),
-//             v.at(7).toFloat(), v.at(8).toFloat(), "main", 256, 5, "CONTINUOUS");
+    int j=0;
+    for (int i = 0; i<num_walls;i++)
+    {
+        w.createWall(abc, def, v.at(j).toFloat(), v.at(j+1).toFloat(),
+                     v.at(j+2).toFloat(), v.at(j+3).toFloat(), "main", 256, 5, "CONTINUOUS");
+        j++;
+    }
+    w.createCircle();
     w.closeDXF(def);
     ofile.close();
-    return a.exec();
+    QProcess::execute("librecad myfile.dxf");
 }

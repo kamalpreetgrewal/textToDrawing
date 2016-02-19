@@ -8,7 +8,6 @@ wall::wall()
     if (dw==NULL) {
         printf("Cannot open file 'myfile.dxf' \
                for writing.");
-               // abort function e.g. with return
     }
 }
 
@@ -32,6 +31,12 @@ void wall::createWall(DL_Dxf *dxf, DL_WriterA *dw, float l, float h, float x, fl
                    DL_Attributes(layer, color, width, lineType));
 }
 
+void wall::createCircle()
+{
+    dxf->writeCircle(*dw, DL_CircleData(0.0, 0.0, 0.0, 40.0),
+                     DL_Attributes());
+}
+
 void wall::closeDXF(DL_WriterA *dw)
 {
     dw->sectionEnd();
@@ -40,11 +45,11 @@ void wall::closeDXF(DL_WriterA *dw)
 }
 
 DL_Dxf* wall::return_dxf(){
-  return dxf;
+    return dxf;
 }
 
 DL_WriterA* wall::return_dw(){
-  return dw;
+    return dw;
 }
 
 wall::~wall()

@@ -4,16 +4,16 @@
 #
 #-------------------------------------------------
 
-QT       += core
+QT       += widgets
 
 QT       -= gui
 
-TARGET = EntryTask1
+TARGET = textToDrawing
 CONFIG   += console
 CONFIG   -= app_bundle
 
 TEMPLATE = app
-LIBS = -ldxflib
+LIBS += -ldxflib
 SOURCES += main.cpp \
     wall.cpp
 
