@@ -15,7 +15,7 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 LIBS += -ldxflib
 SOURCES += main.cpp \
-    wall.cpp
+    entity.cpp
 
 HEADERS += \
-    wall.h
+    entity.h

@@ -1,17 +1,19 @@
-#ifndef WALL_H
-#define WALL_H
+#ifndef ENTITY_H
+#define ENTITY_H
 
 #include <dxflib/dl_dxf.h>
 #include <QString>
+#include <qmath.h>
 
-class wall
+class entity
 {
 public:
-    wall();
-    ~wall();
+    entity();
+    ~entity();
     void createWall(DL_Dxf *, DL_WriterA* ,float, float, float, float,
                     string, int, int, string);
-    void createCircle();
+    //void createFlower(DL_Dxf *, DL_WriterA*, float, float, float);
+    void createFlange(DL_Dxf *, DL_WriterA*, float, float, float);
     void startDXF(DL_Dxf *, DL_WriterA *);
     void closeDXF(DL_WriterA *);
 
@@ -21,6 +23,8 @@ public:
     DL_Dxf *dxf;
     DL_Codes::version exportVersion;
     DL_WriterA* dw;
+
+    int num_layers;
 };
 
-#endif // WALL_H
+#endif // ENTITY_H
