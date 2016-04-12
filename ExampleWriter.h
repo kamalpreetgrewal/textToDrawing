@@ -1,18 +1,14 @@
 #include <drw_interface.h>
 #include <libdxfrw.h>
-
-//
-// Created by R. van Twisk on 4/6/16.
-//
-
-#pragma once
-
+#include <iostream>
 
 class ExampleWriter : public DRW_Interface {
 private:
     dxfRW &dxfW;
 public:
     ExampleWriter(dxfRW &dxfW);
+    DRW_Line b;
+    int count = 0;
 
     virtual ~ExampleWriter() override {
 
@@ -62,9 +58,7 @@ public:
 
     }
 
-    virtual void addLine(const DRW_Line &data) override {
-
-    }
+    virtual void addLine(const DRW_Line &data) override ;
 
     virtual void addRay(const DRW_Ray &data) override {
 
@@ -216,10 +210,6 @@ public:
 
     virtual void writeEntities() override;
 
-
-
 };
-
-
 
 

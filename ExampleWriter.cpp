@@ -1,23 +1,17 @@
-//
-// Created by R. van Twisk on 4/6/16.
-//
-
 #include "ExampleWriter.h"
 ExampleWriter::ExampleWriter(dxfRW &dxfW) : dxfW(dxfW) {
 }
 
-void ExampleWriter::writeEntities() {
-    DRW_Line line;
-    line.basePoint.x = 10;
-    line.basePoint.y = 20;
-    line.secPoint.x = 30;
-    line.secPoint.y = 30;
-    dxfW.writeLine(&line);
+void ExampleWriter::addLine(const DRW_Line &data) {
+    std::cout << "b" << data.basePoint.x;
+    b = data;
+    ++count;
+//    dxfW.writeLine(&b);
+    writeEntities();
+}
 
-    DRW_Line line2;
-    line2.basePoint.x = 0;
-    line2.basePoint.y = 0;
-    line2.secPoint.x = 0;
-    line2.secPoint.y = 30;
-    dxfW.writeLine(&line2);
+void ExampleWriter::writeEntities() {
+    if (count > 0) {
+        std::cout << "d" << b.basePoint.x;
+    }
 }
